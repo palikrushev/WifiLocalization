@@ -1,0 +1,14 @@
+dissim = [0, 1, 10; 1, 0, 10; 10 10 0];
+mdsresult = mdscale(dissim, 2);
+plotmatrix(mdsresult);
+
+---
+
+P = [0, 0; 0, 1];
+Q = [1, 2; 0, 0];
+
+[R,T] = findRotationTranslation(P,Q);
+
+expected: 
+R = [0 1;-1 0]
+T = [1;0]
