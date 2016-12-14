@@ -1,11 +1,11 @@
-function [distanceMatrix] = generateAnchorDistanceMatrix(gridPositions)
+function [distanceMatrix] = generateDistanceMatrix(coordinates)
 
-  [~,numberOfPoints] = size(gridPositions);
+  [~,numberOfPoints] = size(coordinates);
   distanceMatrix = zeros(numberOfPoints,numberOfPoints);
   
   for i = 1:numberOfPoints
     for j = i:numberOfPoints
-      distanceMatrix(i,j) = euclidDistance(gridPositions(:,i),gridPositions(:,j));
+      distanceMatrix(i,j) = euclidDistance(coordinates(:,i),coordinates(:,j));
       distanceMatrix(j,i) = distanceMatrix(i,j);
     end
   end

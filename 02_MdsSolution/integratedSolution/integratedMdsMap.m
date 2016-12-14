@@ -16,7 +16,7 @@ function [devicePosition] = integratedMdsMap(anchorPositions, distancesBetweenAn
   deviceRescaledPosition = rescaledPositions(:,1);
   
   % Find rotationMatrix and translationVector from the anchor nodes
-  [rotationMatrix, translationVector] = findRotationTranslation(anchorPositions, anchorRescaledPositions);
+  [rotationMatrix, translationVector] = findRotationTranslation(anchorRescaledPositions, anchorPositions);
   
   % Calculate device location
   devicePosition = rotationMatrix * deviceRescaledPosition + translationVector;

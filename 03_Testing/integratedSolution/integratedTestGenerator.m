@@ -1,8 +1,6 @@
 function [] = integratedTestGenerator()
 
-  gridPositions = generateGrid();
-  
-  
+  gridPositions = generateGrid();  
   pathPositions = generateRandomizedPath();
   
   [~,numberOfPathPoints] = size(pathPositions);
@@ -11,14 +9,13 @@ function [] = integratedTestGenerator()
     currentPathPoint = pathPositions(:,i);
     
     % filter closest points
-    numberOfPointsToFilter = 5;
+    numberOfPointsToFilter = 10;
     distancesFromPoint = generateDistancesFromPoint(gridPositions,currentPathPoint);
     gridPositionsFiltered = filterClosestNPoints(gridPositions, distancesFromPoint, numberOfPointsToFilter);
-    % % %
-    
+    % % %    
     
     distancesFromPointFiltered = generateDistancesFromPoint(gridPositionsFiltered,currentPathPoint);
-    anchorDistanceMatrixFiltered = generateAnchorDistanceMatrix(gridPositionsFiltered);
+    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered);
     
     
     currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointFiltered);
@@ -32,7 +29,6 @@ function [] = integratedTestGenerator()
     disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
   end
 end
-
 
 
 function [distance] = euclidDistance(firstPoint,secondPoint)
