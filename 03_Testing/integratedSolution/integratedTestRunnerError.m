@@ -1,4 +1,4 @@
-function [] = integratedTestRunner()
+function [] = integratedTestRunnerError()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points

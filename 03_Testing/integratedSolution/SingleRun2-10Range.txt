@@ -1,0 +1,329 @@
+GridPositionJitter 0.200000
+PathNumberOfSplits 5.000000
+NumberOfPointsToFilter 10.000000
+ErrorPercentageOfRange 0.100000
+
+RadioRange 0.210000
+
+TotalError 0.756123
+
+RadioRange 0.220000
+
+TotalError 0.615109
+
+RadioRange 0.230000
+
+TotalError 0.513356
+
+RadioRange 0.240000
+
+TotalError 0.512768
+
+RadioRange 0.250000
+
+TotalError 0.358289
+
+RadioRange 0.260000
+
+TotalError 0.207438
+
+RadioRange 0.270000
+
+TotalError 0.224190
+
+RadioRange 0.280000
+
+TotalError 0.108763
+
+RadioRange 0.290000
+
+TotalError 0.133196
+
+RadioRange 0.300000
+
+TotalError 0.122333
+
+RadioRange 0.310000
+
+TotalError 0.155803
+
+RadioRange 0.320000
+
+TotalError 0.104757
+
+RadioRange 0.330000
+
+TotalError 0.087727
+
+RadioRange 0.340000
+
+TotalError 0.080767
+
+RadioRange 0.350000
+
+TotalError 0.061076
+
+RadioRange 0.360000
+
+TotalError 0.076081
+
+RadioRange 0.370000
+
+TotalError 0.073276
+
+RadioRange 0.380000
+
+TotalError 0.072929
+
+RadioRange 0.390000
+
+TotalError 0.062797
+
+RadioRange 0.400000
+
+TotalError 0.071327
+
+RadioRange 0.410000
+
+TotalError 0.069825
+
+RadioRange 0.420000
+
+TotalError 0.059462
+
+RadioRange 0.430000
+
+TotalError 0.072830
+
+RadioRange 0.440000
+
+TotalError 0.061659
+
+RadioRange 0.450000
+
+TotalError 0.077856
+
+RadioRange 0.460000
+
+TotalError 0.059305
+
+RadioRange 0.470000
+
+TotalError 0.062395
+
+RadioRange 0.480000
+
+TotalError 0.061974
+
+RadioRange 0.490000
+
+TotalError 0.061459
+
+RadioRange 0.500000
+
+TotalError 0.066495
+
+RadioRange 0.510000
+
+TotalError 0.058749
+
+RadioRange 0.520000
+
+TotalError 0.068678
+
+RadioRange 0.530000
+
+TotalError 0.066470
+
+RadioRange 0.540000
+
+TotalError 0.068783
+
+RadioRange 0.550000
+
+TotalError 0.068646
+
+RadioRange 0.560000
+
+TotalError 0.060550
+
+RadioRange 0.570000
+
+TotalError 0.064610
+
+RadioRange 0.580000
+
+TotalError 0.065823
+
+RadioRange 0.590000
+
+TotalError 0.065721
+
+RadioRange 0.600000
+
+TotalError 0.068071
+
+RadioRange 0.610000
+
+TotalError 0.067602
+
+RadioRange 0.620000
+
+TotalError 0.069530
+
+RadioRange 0.630000
+
+TotalError 0.051116
+
+RadioRange 0.640000
+
+TotalError 0.061001
+
+RadioRange 0.650000
+
+TotalError 0.061706
+
+RadioRange 0.660000
+
+TotalError 0.059352
+
+RadioRange 0.670000
+
+TotalError 0.067072
+
+RadioRange 0.680000
+
+TotalError 0.066340
+
+RadioRange 0.690000
+
+TotalError 0.061124
+
+RadioRange 0.700000
+
+TotalError 0.065598
+
+RadioRange 0.710000
+
+TotalError 0.072741
+
+RadioRange 0.720000
+
+TotalError 0.070243
+
+RadioRange 0.730000
+
+TotalError 0.053840
+
+RadioRange 0.740000
+
+TotalError 0.071256
+
+RadioRange 0.750000
+
+TotalError 0.056461
+
+RadioRange 0.760000
+
+TotalError 0.044084
+
+RadioRange 0.770000
+
+TotalError 0.057696
+
+RadioRange 0.780000
+
+TotalError 0.053991
+
+RadioRange 0.790000
+
+TotalError 0.064113
+
+RadioRange 0.800000
+
+TotalError 0.055406
+
+RadioRange 0.810000
+
+TotalError 0.071717
+
+RadioRange 0.820000
+
+TotalError 0.053114
+
+RadioRange 0.830000
+
+TotalError 0.063656
+
+RadioRange 0.840000
+
+TotalError 0.058427
+
+RadioRange 0.850000
+
+TotalError 0.071491
+
+RadioRange 0.860000
+
+TotalError 0.061693
+
+RadioRange 0.870000
+
+TotalError 0.068241
+
+RadioRange 0.880000
+
+TotalError 0.061699
+
+RadioRange 0.890000
+
+TotalError 0.072926
+
+RadioRange 0.900000
+
+TotalError 0.066255
+
+RadioRange 0.910000
+
+TotalError 0.053370
+
+RadioRange 0.920000
+
+TotalError 0.060190
+
+RadioRange 0.930000
+
+TotalError 0.062130
+
+RadioRange 0.940000
+
+TotalError 0.056680
+
+RadioRange 0.950000
+
+TotalError 0.049182
+
+RadioRange 0.960000
+
+TotalError 0.053599
+
+RadioRange 0.970000
+
+TotalError 0.068894
+
+RadioRange 0.980000
+
+TotalError 0.065555
+
+RadioRange 0.990000
+
+TotalError 0.066907
+
+RadioRange 1.000000
+
+TotalError 0.053177
+
+RadioRange 1.010000
+
+TotalError 0.067701
+
