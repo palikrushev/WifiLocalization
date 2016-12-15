@@ -5,26 +5,23 @@ function [] = integratedTestGenerator()
   
   [~,numberOfPathPoints] = size(pathPositions);
   
+  
   numberOfPointsToFilter = 10;
   radioRange = 0.5;
-  errorPercentageOfRange = 0.01;
+  errorPercentageOfRange = 0.05;
   
   for i = 1:numberOfPathPoints
     currentPathPoint = pathPositions(:,i);
     
+    
     distancesFromPoint = generateDistancesFromPoint(gridPositions,currentPathPoint);
-   
-    % introduce error
-    maximalError = radioRange * errorPercentageOfRange;
-    distancesFromPointWithError = introduceErrorToValues(distancesFromPoint, maximalError, 0, Inf);
-    % % %
-    
     % filter N closest points
-    [gridPositionsFiltered, distancesFromPointFiltered] = filterClosestNPoints(gridPositions, distancesFromPointWithError, numberOfPointsToFilter);
+    gridPositionsFiltered = filterClosestNPoints(gridPositions, distancesFromPoint, numberOfPointsToFilter);
     % % %
     
+    distancesFromPointFiltered = generateDistancesFromPoint(gridPositionsFiltered,currentPathPoint);
     % filter distances larger than radioRange into INF
-    distancesFromPointWithRadioRange = turnLargerValuesIntoInf(distancesFromPointFiltered, radioRange);
+    distancesFromPointWithRadioRange = turnLargerValuesIntoInf(distancesFromPointFiltered,radioRange);
     % % %
     
     anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
