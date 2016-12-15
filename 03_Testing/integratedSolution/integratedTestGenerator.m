@@ -8,17 +8,20 @@ function [] = integratedTestGenerator()
   for i = 1:numberOfPathPoints
     currentPathPoint = pathPositions(:,i);
     
-    % filter closest points
+    % filter N closest points
     numberOfPointsToFilter = 10;
     distancesFromPoint = generateDistancesFromPoint(gridPositions,currentPathPoint);
     gridPositionsFiltered = filterClosestNPoints(gridPositions, distancesFromPoint, numberOfPointsToFilter);
-    % % %    
+    % % %        
     
     distancesFromPointFiltered = generateDistancesFromPoint(gridPositionsFiltered,currentPathPoint);
-    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered);
+    % filter distances larger than radioRange into INF
+    radioRange = 0.5;
+    distancesFromPointWithRadioRange = turnLargerValuesIntoInf(distancesFromPointFiltered,radioRange);
+    %%%
     
-    
-    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointFiltered);
+    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
+    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
     
 %    disp('--------');
 %    disp('current:');
