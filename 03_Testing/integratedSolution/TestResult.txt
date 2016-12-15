@@ -1,0 +1,14 @@
+GridPositionJitter 0.200000
+PathNumberOfSplits 5.000000
+NumberOfPointsToFilter 10.000000
+RadioRange 0.500000
+
+ErrorPercentageOfRange 0.010000
+TotalError 0.000000
+
+ErrorPercentageOfRange 0.020000
+TotalError 0.006371
+
+ErrorPercentageOfRange 0.030000
+TotalError 0.012742
+

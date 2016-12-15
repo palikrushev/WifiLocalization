@@ -1,10 +1,10 @@
-function [totalError] = integratedTestGenerator()
+function [totalError] = integratedTestGeneratorWParams(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
 
-  gridPositionJitter = 0.2;  % Random grid
-  pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = 10;
-  radioRange = 0.5;
-  errorPercentageOfRange = 0.10;
+%  gridPositionJitter = 0.2;  % Random grid
+%  pathNumberOfSplits = 5;    % 2^N+1 path points
+%  numberOfPointsToFilter = 10;
+%  radioRange = 0.5;
+%  errorPercentageOfRange = 0.10;
 
   gridPositions = generateGrid(gridPositionJitter);  
   pathPositions = generateRandomizedPath(pathNumberOfSplits);
@@ -40,14 +40,14 @@ function [totalError] = integratedTestGenerator()
 %    disp('estimate:');
 %    disp(currentPathPointEstimate);
 %    disp('distance:');
-    disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
+%    disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
   end
   
-  visualize(pathPositions, pathPositionEstimates);
+%  visualize(pathPositions, pathPositionEstimates);
   
   totalError = calculateTotalError(pathPositions, pathPositionEstimates, radioRange);
-  disp('Total error:');
-  disp(totalError); 
+%  disp('Total error:');
+%  disp(totalError); 
 end
 
 function [distance] = euclidDistance(firstPoint,secondPoint)
