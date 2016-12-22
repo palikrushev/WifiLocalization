@@ -2,9 +2,11 @@ function [errors] = integratedTestRunnerRange()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = 10;
+  numberOfPointsToFilter = 30; 
   radioRange = 0.2;
-  errorPercentageOfRange = 0.1;
+  errorPercentageOfRange = 0.2;
+  radioRangeStep = 0.01;
+  eachStepRunTimes = 10;
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
@@ -14,17 +16,60 @@ function [errors] = integratedTestRunnerRange()
   
   index = 1;
   
-  while radioRange < 1.01
+  while radioRange < 1.0001
     disp(radioRange);
-    totalError = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
-    errors(:,index) = [radioRange, totalError];
-    index = index + 1;
-    radioRange = radioRange + 0.01;
     
-    fprintf(fileID,'RadioRange %f\n\n',radioRange);
-    fprintf(fileID,'TotalError %f\n\n',totalError);    
+    [totalError,totalConnectivity] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+   
+    errors(:,index) = [radioRange, totalError];
+    
+    allRadioRange(index) = radioRange;
+    allTotalError(index) = totalError;
+    allTotalConnectivity(index) = totalConnectivity;
+    fprintf(fileID,'RadioRange %f\n',radioRange);
+    fprintf(fileID,'TotalError %f\n',totalError);   
+    fprintf(fileID,'TotalConnectivity %f\n\n',totalConnectivity);   
+    
+    index = index + 1;
+    radioRange = radioRange + radioRangeStep; 
   end
-  fclose(fileID);
   plot(errors(1,:),errors(2,:));
+  
+  disp('results:');  
+  printArrayToFileAndDisplay(fileID, 'RadioRanges', allRadioRange);
+  printArrayToFileAndDisplay(fileID, 'TotalErrors', allTotalError);
+  printArrayToFileAndDisplay(fileID, 'TotalConnectivities', allTotalConnectivity);
+  
+  fclose(fileID);
 end
+
+function [totalError,totalConnectivity] = runItNTimes(N,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange)
+
+  timesRan = 0;
+  errorSum = 0;
+  connectivitySum = 0;
+  while timesRan < N
+
+    try
+    	[error,connectivity] = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    catch exception
+      disp('retry');
+      continue;
+    end
+    
+    errorSum = errorSum + error;
+    connectivitySum = connectivitySum + connectivity;
+    timesRan = timesRan + 1;
+  end
+  
+  totalError = errorSum / N;
+  totalConnectivity = connectivitySum / N;  
+end
+
+function [] = printArrayToFileAndDisplay(fileID, stringName, array)
+  line = strrep([stringName ': [' sprintf('%d;', array) ']'], ';]', ']');
+  fprintf(fileID,'%s\n',line);
+  disp(line);
+end
+
 

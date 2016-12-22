@@ -16,13 +16,19 @@ function [] = integratedTestRunnerError()
   
   while errorPercentageOfRange <= 0.3
     disp(errorPercentageOfRange);
-    totalError = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    try
+    	[totalError,totalConnectivity] = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    catch exception
+      disp('retry');
+      continue;
+    end
     errors(:,index) = [errorPercentageOfRange, totalError];
     index = index + 1;
-    errorPercentageOfRange = errorPercentageOfRange + 0.01;
     
     fprintf(fileID,'ErrorPercentageOfRange %f\n',errorPercentageOfRange);
     fprintf(fileID,'TotalError %f\n\n',totalError);    
+    
+    errorPercentageOfRange = errorPercentageOfRange + 0.01;
   end
   fclose(fileID);
   plot(errors(1,:),errors(2,:));

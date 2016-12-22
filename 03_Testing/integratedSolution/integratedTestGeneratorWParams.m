@@ -1,4 +1,4 @@
-function [totalError] = integratedTestGeneratorWParams(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
+function [totalError,totalConnectivity] = integratedTestGeneratorWParams(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
 
 %  gridPositionJitter = 0.2;  % Random grid
 %  pathNumberOfSplits = 5;    % 2^N+1 path points
@@ -11,6 +11,7 @@ function [totalError] = integratedTestGeneratorWParams(gridPositionJitter, pathN
   pathPositionEstimates = pathPositions;
   
   [~,numberOfPathPoints] = size(pathPositions);
+  connectivity = zeros(numberOfPathPoints,1);
   
   for i = 1:numberOfPathPoints
     currentPathPoint = pathPositions(:,i);
@@ -30,6 +31,10 @@ function [totalError] = integratedTestGeneratorWParams(gridPositionJitter, pathN
     distancesFromPointWithRadioRange = turnLargerValuesIntoInf(distancesFromPointFiltered, radioRange);
     % % %
     
+    % calculate nonInfiniteDistances for connectivity
+    connectivity(i) = sum(distancesFromPointWithRadioRange ~= Inf);
+    % % %
+    
     anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
     currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
     
@@ -46,6 +51,7 @@ function [totalError] = integratedTestGeneratorWParams(gridPositionJitter, pathN
 %  visualize(pathPositions, pathPositionEstimates);
   
   totalError = calculateTotalError(pathPositions, pathPositionEstimates, radioRange);
+  totalConnectivity = mean(connectivity);
 %  disp('Total error:');
 %  disp(totalError); 
 end
