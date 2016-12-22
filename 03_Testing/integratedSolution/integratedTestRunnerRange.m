@@ -2,11 +2,11 @@ function [errors] = integratedTestRunnerRange()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = 20; 
+  numberOfPointsToFilter = Inf; 
   radioRange = 0.2;
-  errorPercentageOfRange = 0.1;
+  errorPercentageOfRange = 0.0; %0 error
   radioRangeStep = 0.01;
-  eachStepRunTimes = 10;
+  eachStepRunTimes = 1;   % 1 run
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
