@@ -1,9 +1,9 @@
-function [] = integratedTestRunnerError()
+function [errors] = integratedTestRunnerError()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
   numberOfPointsToFilter = 10;
-  radioRange = 0.2;
+  radioRange = 0.4;
   errorPercentageOfRange = 0;
   errorPercentageOfRangeStep = 0.01;
   eachStepRunTimes = 10;
@@ -27,7 +27,7 @@ function [] = integratedTestRunnerError()
     allTotalError(index) = totalError;
     allTotalConnectivity(index) = totalConnectivity;
     fprintf(fileID,'ErrorPercentageOfRange %f\n',errorPercentageOfRange);
-    fprintf(fileID,'TotalError %f\n\n',totalError);    
+    fprintf(fileID,'TotalError %f\n',totalError);    
     fprintf(fileID,'TotalConnectivity %f\n\n',totalConnectivity);   
     
     index = index + 1;
