@@ -1,0 +1,17 @@
+function [] = scatterAndInterpolate( data )
+
+  [~,y] = size(data);
+  
+  lowest = data(2,1);
+  highest = data(2,y);
+  
+
+  scatter(data(1,:),data(2,:));
+  
+  vq2 = interp1(data(1,:),v,xq,'spline');
+  plot(x,v,'o',xq,vq2,':.');
+  xlim([0 2*pi]);
+  title('Spline Interpolation');
+
+end
+
