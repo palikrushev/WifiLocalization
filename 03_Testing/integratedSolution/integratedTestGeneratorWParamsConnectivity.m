@@ -1,4 +1,4 @@
-function [totalError,totalConnectivity] = integratedTestGeneratorWParamsTEMP(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
+function [totalError,totalConnectivity] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
 
 %  gridPositionJitter = 0.2;  % Random grid
 %  pathNumberOfSplits = 5;    % 2^N+1 path points

@@ -1,4 +1,4 @@
-function [] = scatterAndInterpolate( data )
+function [] = scatterAndFitPoly( data )
 
   %scatter(data(1,:),data(2,:));
   
@@ -6,7 +6,7 @@ function [] = scatterAndInterpolate( data )
   [~,y] = size(data);  
   lowest = data(1,1);
   highest = data(1,y);
-  newRange = lowest:(highest-lowest)/100:highest;
+  newRange = lowest:(highest-lowest)/1000:highest;
   
   
   scatter(data(1,:),data(2,:),'+');
@@ -16,4 +16,7 @@ function [] = scatterAndInterpolate( data )
   
   
 end
+
+
+
 
