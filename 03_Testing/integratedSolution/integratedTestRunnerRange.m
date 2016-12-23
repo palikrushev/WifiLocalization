@@ -1,12 +1,16 @@
 function [errors] = integratedTestRunnerRange()
 
+  % CARE TEMP FUNCTION
+  % CARE TEMP FUNCTION
+  % CARE TEMP FUNCTION
+
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = 10; 
-  radioRange = 0.2;
-  errorPercentageOfRange = 0.1;
+  numberOfPointsToFilter = Inf; 
+  radioRange = 0.1;           % CARE SMALL RADIO RANGE (should be 0.2)
+  errorPercentageOfRange = 0; % CARE ZERO ERROR (should be 0.1)
   radioRangeStep = 0.01;
-  eachStepRunTimes = 10;
+  eachStepRunTimes = 100;
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
@@ -16,7 +20,7 @@ function [errors] = integratedTestRunnerRange()
   
   index = 1;
   
-  while radioRange < 1.0001
+  while radioRange < 1.5001    % CARE SHOULD BE 1.0001
     disp(radioRange);
     
     [totalError,totalConnectivity] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
@@ -51,7 +55,7 @@ function [totalError,totalConnectivity] = runItNTimes(N,gridPositionJitter,pathN
   while timesRan < N
 
     try
-    	[error,connectivity] = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    	[error,connectivity] = integratedTestGeneratorWParamsTEMP(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
     catch exception
       disp('retry');
       continue;
