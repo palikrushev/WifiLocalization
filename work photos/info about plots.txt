@@ -1,0 +1,3 @@
+01, 02 simple plots
+03, 04, 05 curve fit with SmoothingSpline with 0.9999
+06 polynomial plot with degree 2
