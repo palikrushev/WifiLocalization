@@ -1,8 +1,8 @@
 function [pathPositionEstimates] = integratedTestGeneratorWGridAndPath(gridPositions,pathPositions)
 
-  radioRange = 0.40;
+  radioRange = 0.5;
   errorPercentageOfRange = 0.10;
-  numberOfPointsToFilter = 10;
+  numberOfPointsToFilter = 30;
 
   pathPositionEstimates = pathPositions;
   

@@ -1,0 +1,4 @@
+Range33Error10Points10:		0.0754
+Range33Error10Points30:		0.1079
+Range50Error10Points10:		0.0610
+Range50Error10Points30:		0.0325
