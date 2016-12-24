@@ -1,6 +1,6 @@
 01, 02 simple plots
 03, 04, 05 curve fit with SmoothingSpline with 0.9999
-06 polynomial plot with degree 2
+06 fit polynomial with degree 2
 
 01, 02 : for each point 100 simulations and then average
 03, 04, 05, 06 : for each point 10 simulations and then average

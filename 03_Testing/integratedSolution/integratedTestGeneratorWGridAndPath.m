@@ -1,8 +1,8 @@
-function [totalError,totalConnectivity] = integratedTestGeneratorWGridAndPath(gridPositions,pathPositions)
+function [pathPositionEstimates] = integratedTestGeneratorWGridAndPath(gridPositions,pathPositions)
 
-  numberOfPointsToFilter = 10;
-  radioRange = 0.5;
+  radioRange = 0.40;
   errorPercentageOfRange = 0.10;
+  numberOfPointsToFilter = 10;
 
   pathPositionEstimates = pathPositions;
   
@@ -44,12 +44,15 @@ function [totalError,totalConnectivity] = integratedTestGeneratorWGridAndPath(gr
     disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
   end
   
-  visualize(pathPositions, pathPositionEstimates);
+  %visualize(pathPositions, pathPositionEstimates);
+  visualizeGridPathAndEstimate(gridPositions, pathPositions, pathPositionEstimates);
   
   totalError = calculateTotalError(pathPositions, pathPositionEstimates, radioRange);
   totalConnectivity = mean(connectivity);
   disp('Total error:');
   disp(totalError); 
+  disp('Total connectivity:');
+  disp(totalConnectivity); 
 end
 
 function [distance] = euclidDistance(firstPoint,secondPoint)
