@@ -1,0 +1,95 @@
+GridPositionJitter 0.200000
+PathNumberOfSplits 5.000000
+NumberOfPointsToFilter 10.000000
+RadioRange 0.500000
+
+ErrorPercentageOfRange 0.010000
+TotalError 0.000000
+
+ErrorPercentageOfRange 0.020000
+TotalError 0.006165
+
+ErrorPercentageOfRange 0.030000
+TotalError 0.012438
+
+ErrorPercentageOfRange 0.040000
+TotalError 0.019720
+
+ErrorPercentageOfRange 0.050000
+TotalError 0.029566
+
+ErrorPercentageOfRange 0.060000
+TotalError 0.033675
+
+ErrorPercentageOfRange 0.070000
+TotalError 0.037150
+
+ErrorPercentageOfRange 0.080000
+TotalError 0.044265
+
+ErrorPercentageOfRange 0.090000
+TotalError 0.050447
+
+ErrorPercentageOfRange 0.100000
+TotalError 0.057859
+
+ErrorPercentageOfRange 0.110000
+TotalError 0.060081
+
+ErrorPercentageOfRange 0.120000
+TotalError 0.066667
+
+ErrorPercentageOfRange 0.130000
+TotalError 0.079638
+
+ErrorPercentageOfRange 0.140000
+TotalError 0.078543
+
+ErrorPercentageOfRange 0.150000
+TotalError 0.096376
+
+ErrorPercentageOfRange 0.160000
+TotalError 0.093138
+
+ErrorPercentageOfRange 0.170000
+TotalError 0.108436
+
+ErrorPercentageOfRange 0.180000
+TotalError 0.101951
+
+ErrorPercentageOfRange 0.190000
+TotalError 0.099840
+
+ErrorPercentageOfRange 0.200000
+TotalError 0.107574
+
+ErrorPercentageOfRange 0.210000
+TotalError 0.113820
+
+ErrorPercentageOfRange 0.220000
+TotalError 0.144402
+
+ErrorPercentageOfRange 0.230000
+TotalError 0.131511
+
+ErrorPercentageOfRange 0.240000
+TotalError 0.118132
+
+ErrorPercentageOfRange 0.250000
+TotalError 0.139130
+
+ErrorPercentageOfRange 0.260000
+TotalError 0.142146
+
+ErrorPercentageOfRange 0.270000
+TotalError 0.153552
+
+ErrorPercentageOfRange 0.280000
+TotalError 0.161234
+
+ErrorPercentageOfRange 0.290000
+TotalError 0.189464
+
+ErrorPercentageOfRange 0.300000
+TotalError 0.158191
+
