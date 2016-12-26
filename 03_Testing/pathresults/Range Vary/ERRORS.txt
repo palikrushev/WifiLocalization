@@ -1,4 +1,0 @@
-Range25Error10Points10:		0.2701
-Range30Error10Points10:		0.1167
-Range35Error10Points10:		0.0747
-Range40Error10Points10:		0.0644
