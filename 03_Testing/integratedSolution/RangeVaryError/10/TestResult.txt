@@ -1,0 +1,332 @@
+GridPositionJitter 0.200000
+PathNumberOfSplits 5.000000
+NumberOfPointsToFilter 10.000000
+ErrorPercentageOfRange 0.100000
+
+RadioRange 0.200000
+TotalError 0.268271
+TotalConnectivity 3.545455
+
+RadioRange 0.210000
+TotalError 0.209249
+TotalConnectivity 4.169697
+
+RadioRange 0.220000
+TotalError 0.200207
+TotalConnectivity 4.612121
+
+RadioRange 0.230000
+TotalError 0.191225
+TotalConnectivity 4.942424
+
+RadioRange 0.240000
+TotalError 0.143911
+TotalConnectivity 5.872727
+
+RadioRange 0.250000
+TotalError 0.110311
+TotalConnectivity 6.506061
+
+RadioRange 0.260000
+TotalError 0.110445
+TotalConnectivity 7.218182
+
+RadioRange 0.270000
+TotalError 0.105165
+TotalConnectivity 7.721212
+
+RadioRange 0.280000
+TotalError 0.099945
+TotalConnectivity 8.042424
+
+RadioRange 0.290000
+TotalError 0.081446
+TotalConnectivity 8.939394
+
+RadioRange 0.300000
+TotalError 0.078748
+TotalConnectivity 8.848485
+
+RadioRange 0.310000
+TotalError 0.079901
+TotalConnectivity 9.127273
+
+RadioRange 0.320000
+TotalError 0.070640
+TotalConnectivity 9.460606
+
+RadioRange 0.330000
+TotalError 0.078541
+TotalConnectivity 9.333333
+
+RadioRange 0.340000
+TotalError 0.071060
+TotalConnectivity 9.533333
+
+RadioRange 0.350000
+TotalError 0.069025
+TotalConnectivity 9.809091
+
+RadioRange 0.360000
+TotalError 0.063343
+TotalConnectivity 9.821212
+
+RadioRange 0.370000
+TotalError 0.063471
+TotalConnectivity 9.963636
+
+RadioRange 0.380000
+TotalError 0.066154
+TotalConnectivity 9.909091
+
+RadioRange 0.390000
+TotalError 0.066443
+TotalConnectivity 9.903030
+
+RadioRange 0.400000
+TotalError 0.063114
+TotalConnectivity 9.936364
+
+RadioRange 0.410000
+TotalError 0.065785
+TotalConnectivity 9.972727
+
+RadioRange 0.420000
+TotalError 0.066857
+TotalConnectivity 9.981818
+
+RadioRange 0.430000
+TotalError 0.060562
+TotalConnectivity 9.987879
+
+RadioRange 0.440000
+TotalError 0.064105
+TotalConnectivity 9.993939
+
+RadioRange 0.450000
+TotalError 0.066026
+TotalConnectivity 10.000000
+
+RadioRange 0.460000
+TotalError 0.064938
+TotalConnectivity 10.000000
+
+RadioRange 0.470000
+TotalError 0.062390
+TotalConnectivity 10.000000
+
+RadioRange 0.480000
+TotalError 0.064079
+TotalConnectivity 9.993939
+
+RadioRange 0.490000
+TotalError 0.060958
+TotalConnectivity 9.996970
+
+RadioRange 0.500000
+TotalError 0.065389
+TotalConnectivity 9.996970
+
+RadioRange 0.510000
+TotalError 0.064708
+TotalConnectivity 9.996970
+
+RadioRange 0.520000
+TotalError 0.065068
+TotalConnectivity 10.000000
+
+RadioRange 0.530000
+TotalError 0.064253
+TotalConnectivity 10.000000
+
+RadioRange 0.540000
+TotalError 0.063238
+TotalConnectivity 10.000000
+
+RadioRange 0.550000
+TotalError 0.061396
+TotalConnectivity 10.000000
+
+RadioRange 0.560000
+TotalError 0.061882
+TotalConnectivity 10.000000
+
+RadioRange 0.570000
+TotalError 0.065754
+TotalConnectivity 9.996970
+
+RadioRange 0.580000
+TotalError 0.061424
+TotalConnectivity 10.000000
+
+RadioRange 0.590000
+TotalError 0.062327
+TotalConnectivity 10.000000
+
+RadioRange 0.600000
+TotalError 0.062434
+TotalConnectivity 10.000000
+
+RadioRange 0.610000
+TotalError 0.059839
+TotalConnectivity 10.000000
+
+RadioRange 0.620000
+TotalError 0.060934
+TotalConnectivity 10.000000
+
+RadioRange 0.630000
+TotalError 0.063838
+TotalConnectivity 10.000000
+
+RadioRange 0.640000
+TotalError 0.057449
+TotalConnectivity 10.000000
+
+RadioRange 0.650000
+TotalError 0.062940
+TotalConnectivity 10.000000
+
+RadioRange 0.660000
+TotalError 0.060199
+TotalConnectivity 10.000000
+
+RadioRange 0.670000
+TotalError 0.061541
+TotalConnectivity 10.000000
+
+RadioRange 0.680000
+TotalError 0.060442
+TotalConnectivity 10.000000
+
+RadioRange 0.690000
+TotalError 0.064581
+TotalConnectivity 10.000000
+
+RadioRange 0.700000
+TotalError 0.063238
+TotalConnectivity 10.000000
+
+RadioRange 0.710000
+TotalError 0.064815
+TotalConnectivity 10.000000
+
+RadioRange 0.720000
+TotalError 0.061768
+TotalConnectivity 10.000000
+
+RadioRange 0.730000
+TotalError 0.061304
+TotalConnectivity 10.000000
+
+RadioRange 0.740000
+TotalError 0.062062
+TotalConnectivity 10.000000
+
+RadioRange 0.750000
+TotalError 0.062758
+TotalConnectivity 10.000000
+
+RadioRange 0.760000
+TotalError 0.062938
+TotalConnectivity 10.000000
+
+RadioRange 0.770000
+TotalError 0.057970
+TotalConnectivity 10.000000
+
+RadioRange 0.780000
+TotalError 0.058263
+TotalConnectivity 10.000000
+
+RadioRange 0.790000
+TotalError 0.061814
+TotalConnectivity 10.000000
+
+RadioRange 0.800000
+TotalError 0.059916
+TotalConnectivity 10.000000
+
+RadioRange 0.810000
+TotalError 0.062011
+TotalConnectivity 10.000000
+
+RadioRange 0.820000
+TotalError 0.059664
+TotalConnectivity 10.000000
+
+RadioRange 0.830000
+TotalError 0.060379
+TotalConnectivity 10.000000
+
+RadioRange 0.840000
+TotalError 0.062001
+TotalConnectivity 10.000000
+
+RadioRange 0.850000
+TotalError 0.058768
+TotalConnectivity 10.000000
+
+RadioRange 0.860000
+TotalError 0.062226
+TotalConnectivity 10.000000
+
+RadioRange 0.870000
+TotalError 0.061703
+TotalConnectivity 10.000000
+
+RadioRange 0.880000
+TotalError 0.061387
+TotalConnectivity 10.000000
+
+RadioRange 0.890000
+TotalError 0.062095
+TotalConnectivity 10.000000
+
+RadioRange 0.900000
+TotalError 0.058565
+TotalConnectivity 10.000000
+
+RadioRange 0.910000
+TotalError 0.062769
+TotalConnectivity 10.000000
+
+RadioRange 0.920000
+TotalError 0.059897
+TotalConnectivity 10.000000
+
+RadioRange 0.930000
+TotalError 0.061470
+TotalConnectivity 10.000000
+
+RadioRange 0.940000
+TotalError 0.057109
+TotalConnectivity 10.000000
+
+RadioRange 0.950000
+TotalError 0.057755
+TotalConnectivity 10.000000
+
+RadioRange 0.960000
+TotalError 0.060979
+TotalConnectivity 10.000000
+
+RadioRange 0.970000
+TotalError 0.060956
+TotalConnectivity 10.000000
+
+RadioRange 0.980000
+TotalError 0.059983
+TotalConnectivity 10.000000
+
+RadioRange 0.990000
+TotalError 0.064710
+TotalConnectivity 10.000000
+
+RadioRange 1.000000
+TotalError 0.063176
+TotalConnectivity 10.000000
+
+RadioRanges: [2.000000e-01;2.100000e-01;2.200000e-01;2.300000e-01;2.400000e-01;2.500000e-01;2.600000e-01;2.700000e-01;2.800000e-01;2.900000e-01;3.000000e-01;3.100000e-01;3.200000e-01;3.300000e-01;3.400000e-01;3.500000e-01;3.600000e-01;3.700000e-01;3.800000e-01;3.900000e-01;4.000000e-01;4.100000e-01;4.200000e-01;4.300000e-01;4.400000e-01;4.500000e-01;4.600000e-01;4.700000e-01;4.800000e-01;4.900000e-01;5.000000e-01;5.100000e-01;5.200000e-01;5.300000e-01;5.400000e-01;5.500000e-01;5.600000e-01;5.700000e-01;5.800000e-01;5.900000e-01;6.000000e-01;6.100000e-01;6.200000e-01;6.300000e-01;6.400000e-01;6.500000e-01;6.600000e-01;6.700000e-01;6.800000e-01;6.900000e-01;7.000000e-01;7.100000e-01;7.200000e-01;7.300000e-01;7.400000e-01;7.500000e-01;7.600000e-01;7.700000e-01;7.800000e-01;7.900000e-01;8.000000e-01;8.100000e-01;8.200000e-01;8.300000e-01;8.400000e-01;8.500000e-01;8.600000e-01;8.700000e-01;8.800000e-01;8.900000e-01;9.000000e-01;9.100000e-01;9.200000e-01;9.300000e-01;9.400000e-01;9.500000e-01;9.600000e-01;9.700000e-01;9.800000e-01;9.900000e-01;1.000000e+00]
+TotalErrors: [2.682705e-01;2.092490e-01;2.002069e-01;1.912254e-01;1.439106e-01;1.103111e-01;1.104445e-01;1.051652e-01;9.994485e-02;8.144641e-02;7.874804e-02;7.990063e-02;7.064003e-02;7.854099e-02;7.106046e-02;6.902513e-02;6.334267e-02;6.347060e-02;6.615411e-02;6.644284e-02;6.311443e-02;6.578530e-02;6.685749e-02;6.056212e-02;6.410479e-02;6.602631e-02;6.493754e-02;6.239028e-02;6.407914e-02;6.095807e-02;6.538898e-02;6.470784e-02;6.506805e-02;6.425309e-02;6.323828e-02;6.139592e-02;6.188197e-02;6.575420e-02;6.142377e-02;6.232664e-02;6.243404e-02;5.983926e-02;6.093354e-02;6.383754e-02;5.744902e-02;6.294014e-02;6.019850e-02;6.154116e-02;6.044233e-02;6.458140e-02;6.323841e-02;6.481533e-02;6.176775e-02;6.130350e-02;6.206175e-02;6.275842e-02;6.293761e-02;5.796982e-02;5.826341e-02;6.181430e-02;5.991568e-02;6.201104e-02;5.966385e-02;6.037915e-02;6.200107e-02;5.876840e-02;6.222590e-02;6.170277e-02;6.138744e-02;6.209495e-02;5.856511e-02;6.276887e-02;5.989746e-02;6.147022e-02;5.710924e-02;5.775462e-02;6.097867e-02;6.095624e-02;5.998319e-02;6.470954e-02;6.317564e-02]
+TotalConnectivities: [3.545455e+00;4.169697e+00;4.612121e+00;4.942424e+00;5.872727e+00;6.506061e+00;7.218182e+00;7.721212e+00;8.042424e+00;8.939394e+00;8.848485e+00;9.127273e+00;9.460606e+00;9.333333e+00;9.533333e+00;9.809091e+00;9.821212e+00;9.963636e+00;9.909091e+00;9.903030e+00;9.936364e+00;9.972727e+00;9.981818e+00;9.987879e+00;9.993939e+00;10;10;10;9.993939e+00;9.996970e+00;9.996970e+00;9.996970e+00;10;10;10;10;10;9.996970e+00;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10;10]

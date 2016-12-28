@@ -6,7 +6,7 @@ function [errors] = integratedTestRunnerRange()
   radioRange = 0.2;      
   errorPercentageOfRange = 0.4; 
   radioRangeStep = 0.01;
-  eachStepRunTimes = 100;
+  eachStepRunTimes = 10;
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
