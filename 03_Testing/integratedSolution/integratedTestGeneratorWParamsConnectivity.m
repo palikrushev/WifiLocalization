@@ -1,4 +1,4 @@
-function [totalError,totalConnectivity] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
+function [totalConnectivity, numberOfPointsWithNeighbor, numberOfPointsWithoutNeighbor] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
 
 %  gridPositionJitter = 0.2;  % Random grid
 %  pathNumberOfSplits = 5;    % 2^N+1 path points
@@ -8,7 +8,6 @@ function [totalError,totalConnectivity] = integratedTestGeneratorWParamsConnecti
 
   gridPositions = generateGrid(gridPositionJitter);  
   pathPositions = generateRandomizedPath(pathNumberOfSplits);
-  pathPositionEstimates = pathPositions;
   
   [~,numberOfPathPoints] = size(pathPositions);
   connectivity = zeros(numberOfPathPoints,1);
@@ -24,7 +23,7 @@ function [totalError,totalConnectivity] = integratedTestGeneratorWParamsConnecti
     % % %
     
     % filter N closest points
-    [gridPositionsFiltered, distancesFromPointFiltered] = filterClosestNPoints(gridPositions, distancesFromPointWithError, numberOfPointsToFilter);
+    [~, distancesFromPointFiltered] = filterClosestNPoints(gridPositions, distancesFromPointWithError, numberOfPointsToFilter);
     % % %
     
     % filter distances larger than radioRange into INF
@@ -35,27 +34,9 @@ function [totalError,totalConnectivity] = integratedTestGeneratorWParamsConnecti
     connectivity(i) = sum(distancesFromPointWithRadioRange ~= Inf);
     % % %
     
- %   anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
- %   currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
-    
- %   pathPositionEstimates(:,i) = currentPathPointEstimate;
-%    disp('--------');
-%    disp('current:');
-%    disp(currentPathPoint);
-%    disp('estimate:');
-%    disp(currentPathPointEstimate);
-%    disp('distance:');
-%    disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
   end
   
-%  visualize(pathPositions, pathPositionEstimates);
-  
-  totalError = 0;
+  numberOfPointsWithoutNeighbor = sum(connectivity == 0);
+  numberOfPointsWithNeighbor = numberOfPathPoints - numberOfPointsWithoutNeighbor;
   totalConnectivity = mean(connectivity);
-%  disp('Total error:');
-%  disp(totalError); 
-end
-
-function [distance] = euclidDistance(firstPoint,secondPoint)
-  distance = sqrt(sum((firstPoint-secondPoint).^2));
 end

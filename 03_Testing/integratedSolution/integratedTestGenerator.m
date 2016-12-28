@@ -1,9 +1,9 @@
-function [totalError,totalConnectivity] = integratedTestGenerator()
+function [totalError,totalConnectivity,gridPositions,pathPositions] = integratedTestGenerator()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
   numberOfPointsToFilter = 10;
-  radioRange = 0.5;
+  radioRange = 0.2;
   errorPercentageOfRange = 0.10;
 
   gridPositions = generateGrid(gridPositionJitter);  
@@ -34,9 +34,8 @@ function [totalError,totalConnectivity] = integratedTestGenerator()
     % calculate nonInfiniteDistances for connectivity
     connectivity(i) = sum(distancesFromPointWithRadioRange ~= Inf);
     % % %
-    
-    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
-    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
+     
+    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, distancesFromPointWithRadioRange);
     
     pathPositionEstimates(:,i) = currentPathPointEstimate;
 %    disp('--------');

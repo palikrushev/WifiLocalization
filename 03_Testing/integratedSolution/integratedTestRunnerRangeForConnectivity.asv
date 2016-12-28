@@ -10,7 +10,7 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   radioRange = 0.1;           % CARE SMALL RADIO RANGE (should be 0.2)
   errorPercentageOfRange = 0; % CARE ZERO ERROR (should be 0.1)
   radioRangeStep = 0.01;
-  eachStepRunTimes = 1000;
+  eachStepRunTimes = 100;
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
@@ -20,15 +20,15 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   
   index = 1;
   
-  while radioRange < 0.3501    % CARE SHOULD BE 1.0001
+  while radioRange < 1.5001    % CARE SHOULD BE 1.0001
     disp(radioRange);
     
     [totalConnectivity, withNeighbors, withoutNeighbors] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
-       
+   
+    errors(:,index) = [radioRange, totalError];
+    
     allRadioRange(index) = radioRange;
     allTotalConnectivity(index) = totalConnectivity;
-    allWithNeighbors(index) = withNeighbors;
-    allWithoutNeighbors(index) = withoutNeighbors;
     fprintf(fileID,'RadioRange %f\n',radioRange);
     fprintf(fileID,'TotalConnectivity %f\n\n',totalConnectivity);   
     
@@ -36,16 +36,10 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
     radioRange = radioRange + radioRangeStep; 
   end
   
-  percentageWithoutNeighbors = allWithoutNeighbors ./ (allWithoutNeighbors + allWithNeighbors);
-  
-  plot(allRadioRange, percentageWithoutNeighbors);
-  
   disp('results:');  
   printArrayToFileAndDisplay(fileID, 'RadioRanges', allRadioRange);
+  printArrayToFileAndDisplay(fileID, 'TotalErrors', allTotalError);
   printArrayToFileAndDisplay(fileID, 'TotalConnectivities', allTotalConnectivity);
-  printArrayToFileAndDisplay(fileID, 'WithoutNeighbors', allWithoutNeighbors);
-  printArrayToFileAndDisplay(fileID, 'WithNeighbors', allWithNeighbors);
-  printArrayToFileAndDisplay(fileID, 'PercentageWithoutNeighbors', percentageWithoutNeighbors);
   
   fclose(fileID);
 end

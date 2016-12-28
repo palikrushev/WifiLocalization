@@ -1,8 +1,8 @@
-function [pathPositionEstimates] = integratedTestGeneratorWGridAndPath(gridPositions,pathPositions)
+function [totalError,totalConnectivity,gridPositions,pathPositions] = integratedTestGeneratorWGridAndPath(gridPositions,pathPositions)
 
-  radioRange = 0.5;
+  numberOfPointsToFilter = 10;
+  radioRange = 0.2;
   errorPercentageOfRange = 0.10;
-  numberOfPointsToFilter = 30;
 
   pathPositionEstimates = pathPositions;
   
@@ -30,9 +30,8 @@ function [pathPositionEstimates] = integratedTestGeneratorWGridAndPath(gridPosit
     % calculate nonInfiniteDistances for connectivity
     connectivity(i) = sum(distancesFromPointWithRadioRange ~= Inf);
     % % %
-    
-    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
-    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
+     
+    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, distancesFromPointWithRadioRange);
     
     pathPositionEstimates(:,i) = currentPathPointEstimate;
 %    disp('--------');
@@ -44,15 +43,12 @@ function [pathPositionEstimates] = integratedTestGeneratorWGridAndPath(gridPosit
     disp(euclidDistance(currentPathPoint,currentPathPointEstimate));
   end
   
-  %visualize(pathPositions, pathPositionEstimates);
-  visualizeGridPathAndEstimate(gridPositions, pathPositions, pathPositionEstimates);
+  visualize(pathPositions, pathPositionEstimates);
   
   totalError = calculateTotalError(pathPositions, pathPositionEstimates, radioRange);
   totalConnectivity = mean(connectivity);
   disp('Total error:');
   disp(totalError); 
-  disp('Total connectivity:');
-  disp(totalConnectivity); 
 end
 
 function [distance] = euclidDistance(firstPoint,secondPoint)

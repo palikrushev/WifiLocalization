@@ -1,15 +1,34 @@
-function [devicePosition] = integratedMdsMap(anchorPositions, distancesBetweenAnchors, distanceFromDevice)
+function [devicePosition] = integratedMdsMap(anchorPositions, distanceFromDevice)
 
+  % Filter infinite values
+  [filteredAnchorPositions, filteredDistanceFromDevice] = filterInfValues(anchorPositions, distanceFromDevice);
+  
+  try
+    % Try MDS-MAP Algoritthm
+    devicePosition = mdsMapAlgorithm(filteredAnchorPositions, filteredDistanceFromDevice);
+  catch exception
+    % If it fails, just find the centroid
+    devicePosition = weightedCentroid(filteredAnchorPositions, filteredDistanceFromDevice);
+  end
+  
+end
+
+function [devicePosition] = mdsMapAlgorithm(anchorPositions, distanceFromDevice)
+
+  % Calculate all distances between anchors
+  distancesBetweenAnchors = generateDistanceMatrix(anchorPositions);
+    
   % The first node of the distance matrix is the unknown device
   distanceMatrix = horzcat(distanceFromDevice, distancesBetweenAnchors);
   distanceMatrix = vertcat(horzcat(0, transpose(distanceFromDevice)), distanceMatrix);
   
   % Find all shortest paths ONLY for INF values
-  fullDistanceMatrix = fillAllDistances(distanceMatrix);
+  % distanceMatrix = fillAllDistances(distanceMatrix);
+  % this is now DISABLED, instead weighted centroid is used
   
   % Perform classic mdscale
   dimensions = length(anchorPositions(:,1));
-  rescaledPositions = mdsClassic(fullDistanceMatrix, dimensions);
+  rescaledPositions = mdsClassic(distanceMatrix, dimensions);
   
   % Extract separate rescaled positions for the anchors and for the device
   anchorRescaledPositions = rescaledPositions(:,2:end);
