@@ -84,7 +84,8 @@ function [ centroid ] = weightedCentroid( anchorPositions, distanceFromDevice )
       continue;
     end;
     
-    weight = 1/distanceFromDevice(i);
+    % 0.000001 is added to prevent infinity
+    weight = 1 / (distanceFromDevice(i) + 0.000001);
     weightSum = weightSum + weight;
     centroidSum = centroidSum + (anchorPositions(:,i) * weight);
   end

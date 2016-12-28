@@ -1,14 +1,10 @@
-function [errors] = integratedTestRunnerRangeForConnectivity()
-
-  % CARE TEMP FUNCTION
-  % CARE TEMP FUNCTION
-  % CARE TEMP FUNCTION
+function [errors] = integratedTestRunnerRange()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = Inf; 
-  radioRange = 0.1;           % CARE SMALL RADIO RANGE (should be 0.2)
-  errorPercentageOfRange = 0; % CARE ZERO ERROR (should be 0.1)
+  numberOfPointsToFilter = 10; 
+  radioRange = 0.2;      
+  errorPercentageOfRange = 0.1; 
   radioRangeStep = 0.01;
   eachStepRunTimes = 100;
   
@@ -20,21 +16,24 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   
   index = 1;
   
-  while radioRange < 1.5001    % CARE SHOULD BE 1.0001
+  while radioRange < 1.0001 
     disp(radioRange);
     
-    [totalConnectivity, withNeighbors, withoutNeighbors] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    [totalError,totalConnectivity] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
    
     errors(:,index) = [radioRange, totalError];
     
     allRadioRange(index) = radioRange;
+    allTotalError(index) = totalError;
     allTotalConnectivity(index) = totalConnectivity;
     fprintf(fileID,'RadioRange %f\n',radioRange);
+    fprintf(fileID,'TotalError %f\n',totalError);   
     fprintf(fileID,'TotalConnectivity %f\n\n',totalConnectivity);   
     
     index = index + 1;
     radioRange = radioRange + radioRangeStep; 
   end
+  plot(errors(1,:),errors(2,:));
   
   disp('results:');  
   printArrayToFileAndDisplay(fileID, 'RadioRanges', allRadioRange);
@@ -44,27 +43,26 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   fclose(fileID);
 end
 
-function [totalConnectivity, withNeighbors, withoutNeighbors] = runItNTimes(N,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange)
+function [totalError,totalConnectivity] = runItNTimes(N,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange)
 
   timesRan = 0;
+  errorSum = 0;
   connectivitySum = 0;
-  withNeighbors = 0;
-  withoutNeighbors = 0;
   while timesRan < N
 
     try
-    	[connectivity, numberOfPointsWithNeighbor, numberOfPointsWithoutNeighbor] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    	[error,connectivity] = integratedTestGeneratorWParams(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
     catch exception
       disp('retry');
       continue;
     end
     
-    withNeighbors = withNeighbors + numberOfPointsWithNeighbor;
-    withoutNeighbors = withoutNeighbors + numberOfPointsWithoutNeighbor;
+    errorSum = errorSum + error;
     connectivitySum = connectivitySum + connectivity;
     timesRan = timesRan + 1;
   end
   
+  totalError = errorSum / N;
   totalConnectivity = connectivitySum / N;  
 end
 

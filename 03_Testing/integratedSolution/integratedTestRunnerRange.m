@@ -2,7 +2,7 @@ function [errors] = integratedTestRunnerRange()
 
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
-  numberOfPointsToFilter = Inf; 
+  numberOfPointsToFilter = 10; 
   radioRange = 0.2;      
   errorPercentageOfRange = 0.1; 
   radioRangeStep = 0.01;

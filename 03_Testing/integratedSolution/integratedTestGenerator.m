@@ -3,7 +3,7 @@ function [totalError,totalConnectivity,gridPositions,pathPositions] = integrated
   gridPositionJitter = 0.2;  % Random grid
   pathNumberOfSplits = 5;    % 2^N+1 path points
   numberOfPointsToFilter = 10;
-  radioRange = 0.2;
+  radioRange = 0.25;
   errorPercentageOfRange = 0.10;
 
   gridPositions = generateGrid(gridPositionJitter);  
