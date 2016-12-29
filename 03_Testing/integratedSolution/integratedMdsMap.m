@@ -1,15 +1,35 @@
-function [devicePosition] = integratedMdsMap(anchorPositions, distancesBetweenAnchors, distanceFromDevice)
+function [devicePosition] = integratedMdsMap(anchorPositions, distanceFromDevice)
 
+  % Filter infinite values
+  [filteredAnchorPositions, filteredDistanceFromDevice] = filterInfValues(anchorPositions, distanceFromDevice);
+  
+  % If there are not enought points to do MDS, find weighted centroid
+  [dimension,~] = size(anchorPositions);
+  if (length(filteredDistanceFromDevice) <= dimension)
+    devicePosition = weightedCentroid(filteredAnchorPositions, filteredDistanceFromDevice);
+    return;
+  end
+  
+  % Otherwise go with MDS-MAP Algoritthm
+  devicePosition = mdsMapAlgorithm(filteredAnchorPositions, filteredDistanceFromDevice);  
+end
+
+function [devicePosition] = mdsMapAlgorithm(anchorPositions, distanceFromDevice)
+
+  % Calculate all distances between anchors
+  distancesBetweenAnchors = generateDistanceMatrix(anchorPositions);
+    
   % The first node of the distance matrix is the unknown device
   distanceMatrix = horzcat(distanceFromDevice, distancesBetweenAnchors);
   distanceMatrix = vertcat(horzcat(0, transpose(distanceFromDevice)), distanceMatrix);
   
   % Find all shortest paths ONLY for INF values
-  fullDistanceMatrix = fillAllDistances(distanceMatrix);
+  % distanceMatrix = fillAllDistances(distanceMatrix);
+  % this is now DISABLED, instead weighted centroid is used
   
   % Perform classic mdscale
-  dimensions = length(anchorPositions(:,1));
-  rescaledPositions = mdsClassic(fullDistanceMatrix, dimensions);
+  [dimension,~] = size(anchorPositions);
+  rescaledPositions = mdsClassic(distanceMatrix, dimension);
   
   % Extract separate rescaled positions for the anchors and for the device
   anchorRescaledPositions = rescaledPositions(:,2:end);
@@ -22,37 +42,75 @@ function [devicePosition] = integratedMdsMap(anchorPositions, distancesBetweenAn
   devicePosition = rotationMatrix * deviceRescaledPosition + translationVector;
 end
 
-function [ fullDistanceMatrix ] = fillAllDistances( distanceMatrix )
+function [ filteredAnchorPositions, filteredDistanceFromDevice ] = filterInfValues(anchorPositions, distanceFromDevice)
 
-  fullDistanceMatrix = floydWarshall(distanceMatrix);
+  [dimension, numberOfPoints] = size(anchorPositions);
+  numberOfInf = sum(distanceFromDevice == Inf);
+  
+  numberOfFilteredPoints = numberOfPoints - numberOfInf;
+  
+  filteredAnchorPositions = zeros(dimension,numberOfFilteredPoints);
+  filteredDistanceFromDevice = zeros(numberOfFilteredPoints,1);
+  
+  index = 1;
+  
+  for i=1:numberOfPoints
+    
+    if (distanceFromDevice(i) == Inf)
+      continue;
+    end
+    
+    filteredDistanceFromDevice(index) = distanceFromDevice(i);
+    filteredAnchorPositions(:,index) = anchorPositions(:,i);
+    index = index + 1;    
+  end   
 
 end
 
-function [fullDistanceMatrix]=floydWarshall(distanceMatrix)
+function [ centroid ] = weightedCentroid( anchorPositions, distanceFromDevice )
 
-  % fills the INF distances with values, ONLY modifies INF distances
-  % distanceMatrix: NxN square distance matrix
+  % Calculated the weighted centroid while ignoring infinite values.
 
-  N1 = length(distanceMatrix(:,1));
-  N2 = length(distanceMatrix(1,:));
-
-  if (N1 ~= N2)
-    error('Matrix is not square');
+  [dimension, numberOfPoints] = size(anchorPositions);
+  
+  if (numberOfPoints == 0)
+    centroid = [0.5;0.5;0.5];
+    return;
   end
 
-  N=N1;
-  fullDistanceMatrix=distanceMatrix;
+  weightSum = 0;
+  centroidSum = zeros(dimension,1);
+  for i = 1:numberOfPoints
+    if(distanceFromDevice(i) == Inf)
+      continue;
+    end;
+    
+    % 0.000001 is added to prevent infinity
+    weight = 1 / (distanceFromDevice(i) + 0.000001);
+    weightSum = weightSum + weight;
+    centroidSum = centroidSum + (anchorPositions(:,i) * weight);
+  end
+  
+  centroid = centroidSum / weightSum;
 
-  for k=1:N
-      for i=1:N
-          for j=1:N
-              if (distanceMatrix(i,j) == inf) && (fullDistanceMatrix(i,j) > fullDistanceMatrix(i,k) + fullDistanceMatrix(k,j))
-                  fullDistanceMatrix(i,j) = fullDistanceMatrix(i,k) + fullDistanceMatrix(k,j);
-              end
-          end
-      end
+end
+
+function [distanceMatrix] = generateDistanceMatrix(coordinates)
+
+  [~,numberOfPoints] = size(coordinates);
+  distanceMatrix = zeros(numberOfPoints,numberOfPoints);
+  
+  for i = 1:numberOfPoints
+    for j = i:numberOfPoints
+      distanceMatrix(i,j) = euclidDistance(coordinates(:,i),coordinates(:,j));
+      distanceMatrix(j,i) = distanceMatrix(i,j);
+    end
   end
 
+end
+
+function [distance] = euclidDistance(firstPoint,secondPoint)
+  distance = sqrt(sum((firstPoint-secondPoint).^2));
 end
 
 function [rotationMatrix, translationVector]=findRotationTranslation(startPos, finalPos)

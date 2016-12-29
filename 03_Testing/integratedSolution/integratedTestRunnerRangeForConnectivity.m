@@ -10,7 +10,7 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   radioRange = 0.1;           % CARE SMALL RADIO RANGE (should be 0.2)
   errorPercentageOfRange = 0; % CARE ZERO ERROR (should be 0.1)
   radioRangeStep = 0.01;
-  eachStepRunTimes = 100;
+  eachStepRunTimes = 1000;
   
   fileID = fopen('TestResult.txt','w');
   fprintf(fileID,'GridPositionJitter %f\n',gridPositionJitter);
@@ -20,53 +20,57 @@ function [errors] = integratedTestRunnerRangeForConnectivity()
   
   index = 1;
   
-  while radioRange < 1.5001    % CARE SHOULD BE 1.0001
+  while radioRange < 0.3501    % CARE SHOULD BE 1.0001
     disp(radioRange);
     
-    [totalError,totalConnectivity] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
-   
-    errors(:,index) = [radioRange, totalError];
-    
+    [totalConnectivity, withNeighbors, withoutNeighbors] = runItNTimes(eachStepRunTimes,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+       
     allRadioRange(index) = radioRange;
-    allTotalError(index) = totalError;
     allTotalConnectivity(index) = totalConnectivity;
+    allWithNeighbors(index) = withNeighbors;
+    allWithoutNeighbors(index) = withoutNeighbors;
     fprintf(fileID,'RadioRange %f\n',radioRange);
-    fprintf(fileID,'TotalError %f\n',totalError);   
     fprintf(fileID,'TotalConnectivity %f\n\n',totalConnectivity);   
     
     index = index + 1;
     radioRange = radioRange + radioRangeStep; 
   end
-  plot(errors(1,:),errors(2,:));
+  
+  percentageWithoutNeighbors = allWithoutNeighbors ./ (allWithoutNeighbors + allWithNeighbors);
+  
+  plot(allRadioRange, percentageWithoutNeighbors);
   
   disp('results:');  
   printArrayToFileAndDisplay(fileID, 'RadioRanges', allRadioRange);
-  printArrayToFileAndDisplay(fileID, 'TotalErrors', allTotalError);
   printArrayToFileAndDisplay(fileID, 'TotalConnectivities', allTotalConnectivity);
+  printArrayToFileAndDisplay(fileID, 'WithoutNeighbors', allWithoutNeighbors);
+  printArrayToFileAndDisplay(fileID, 'WithNeighbors', allWithNeighbors);
+  printArrayToFileAndDisplay(fileID, 'PercentageWithoutNeighbors', percentageWithoutNeighbors);
   
   fclose(fileID);
 end
 
-function [totalError,totalConnectivity] = runItNTimes(N,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange)
+function [totalConnectivity, withNeighbors, withoutNeighbors] = runItNTimes(N,gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange)
 
   timesRan = 0;
-  errorSum = 0;
   connectivitySum = 0;
+  withNeighbors = 0;
+  withoutNeighbors = 0;
   while timesRan < N
 
     try
-    	[error,connectivity] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
+    	[connectivity, numberOfPointsWithNeighbor, numberOfPointsWithoutNeighbor] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter,pathNumberOfSplits,numberOfPointsToFilter,radioRange,errorPercentageOfRange);
     catch exception
       disp('retry');
       continue;
     end
     
-    errorSum = errorSum + error;
+    withNeighbors = withNeighbors + numberOfPointsWithNeighbor;
+    withoutNeighbors = withoutNeighbors + numberOfPointsWithoutNeighbor;
     connectivitySum = connectivitySum + connectivity;
     timesRan = timesRan + 1;
   end
   
-  totalError = errorSum / N;
   totalConnectivity = connectivitySum / N;  
 end
 

@@ -35,8 +35,7 @@ function [totalError,totalConnectivity] = integratedTestGeneratorWParams(gridPos
     connectivity(i) = sum(distancesFromPointWithRadioRange ~= Inf);
     % % %
     
-    anchorDistanceMatrixFiltered = generateDistanceMatrix(gridPositionsFiltered); 
-    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, anchorDistanceMatrixFiltered, distancesFromPointWithRadioRange);
+    currentPathPointEstimate = integratedMdsMap(gridPositionsFiltered, distancesFromPointWithRadioRange);
     
     pathPositionEstimates(:,i) = currentPathPointEstimate;
 %    disp('--------');
