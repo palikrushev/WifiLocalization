@@ -1,4 +1,4 @@
-function [totalConnectivity, numberOfPointsWithNeighbor, numberOfPointsWithoutNeighbor] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
+function [totalConnectivity, histogramCount] = integratedTestGeneratorWParamsConnectivity(gridPositionJitter, pathNumberOfSplits, numberOfPointsToFilter, radioRange, errorPercentageOfRange)
 
 %  gridPositionJitter = 0.2;  % Random grid
 %  pathNumberOfSplits = 5;    % 2^N+1 path points
@@ -36,7 +36,6 @@ function [totalConnectivity, numberOfPointsWithNeighbor, numberOfPointsWithoutNe
     
   end
   
-  numberOfPointsWithoutNeighbor = sum(connectivity == 0);
-  numberOfPointsWithNeighbor = numberOfPathPoints - numberOfPointsWithoutNeighbor;
+  histogramCount = histcounts(connectivity,0:126)';
   totalConnectivity = mean(connectivity);
 end
