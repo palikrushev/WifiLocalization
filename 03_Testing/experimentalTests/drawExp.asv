@@ -1,0 +1,34 @@
+function [distances] = drawExp(param)
+  
+  figure;
+  hold on;
+  grid on;
+
+  [rows,columns] = size(param);
+  
+  index = 1;
+
+  for i = 1:rows
+    currentRow = param(i,:);
+    currentRowLength = length(currentRow);
+    
+    for j = 2:currentRowLength
+      if (currentRow(j) == 0)
+        break;
+      end
+      drawPoint(currentRow(1),currentRow(j));
+      distances(index,1) = ;
+      distances(index,2
+    end
+    
+  end
+
+
+end
+
+function [] = drawPoint(x,y)
+  
+  scatter(x,y);
+
+end
+

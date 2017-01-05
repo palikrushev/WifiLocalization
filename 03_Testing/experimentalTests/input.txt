@@ -1,4 +1,87 @@
+============================
+============================
+
+FINDINGS:
+
+============================
+
+https://forums.estimote.com/t/use-rssi-measure-the-distance/3665
+https://forums.estimote.com/t/determine-accurate-distance-of-signal/2858
+http://www.rn.inf.tu-dresden.de/dargie/papers/icwcuca.pdf
+http://engineering.stackexchange.com/questions/3183/how-can-i-find-the-emission-power-of-a-wifi-mobile-phone-antenna
+https://www.fcc.gov/oet/ea/fccid
+
+1. se vnesuva FCCID za uredot na https://www.fcc.gov/oet/ea/fccid (za galaxy s4 A3LGTI9505)
+2. se selektiraat frekvenciskite podrachja shto se okolu 2.4 GHz
+3. se izbira WLAN TEST REPORT
+
+primer se dobiva: 
+https://apps.fcc.gov/eas/GetApplicationAttachment.html?id=1917628
+
+preku:
+https://apps.fcc.gov/oetcf/eas/reports/ViewExhibitReport.cfm?mode=Exhibits&RequestTimeout=500&calledFromFrame=N&application_id=%2FObgCcBOSPCygR6XCQETKA%3D%3D&fcc_id=A3LGTI9505
+
+============================
+============================
+
+MODELS:
+
+============================
+
+General model:
+     f(x) = 10^((-56-x)/10*2.5) + a*0
+Coefficients (with 95% confidence bounds):
+       a =      0.4206  (-Inf, Inf)
+
+Goodness of fit:
+  SSE: 3.162e+17
+  R-square: -4.163e+14
+  Adjusted R-square: -4.163e+14
+  RMSE: 3.676e+07
+
+Warning: A negative R-square is possible if the model does not contain a constant term and the fit is poor (worse than just fitting the mean). Try changing the model or using a different StartPoint.
+
+============================
+
+General model:
+     f(x) = 2.7182818284590452353602874713527^((x+48.518)/(-3.379)) + 0*a
+Coefficients (with 95% confidence bounds):
+       a =      0.4206  (-Inf, Inf)
+
+Goodness of fit:
+  SSE: 8.334e+10
+  R-square: -1.097e+08
+  Adjusted R-square: -1.097e+08
+  RMSE: 1.887e+04
+
+Warning: A negative R-square is possible if the model does not contain a constant term and the fit is poor (worse than just fitting the mean). Try changing the model or using a different StartPoint.
+
+============================
+
+10^((56.02-x)/176.3) + a*0
+
+General model:
+     f(x) = 10^((b-x)/10*a)
+Coefficients (with 95% confidence bounds):
+       a =     0.05672  (0.03077, 0.08266)
+       b =       56.03  (3.965, 108.1)
+
+Goodness of fit:
+  SSE: 707.6
+  R-square: 0.0684
+  Adjusted R-square: 0.0644
+  RMSE: 1.743
+
+============================
+============================
+
+TESTS:
+
+============================
+
 TEST1 with INFINITY
+
+Pazi na transponiranje '
 
 points = [6 5; 6 3; 1 5; 1 0; 4 1; 7 1]';
 measurements = [0 -56 -59 -72 -69 -59; -55 0 -52 -58 -Inf -37; -55 -48 0 -49 -52 -49; -67 -58 -64 0 -67 -58; -54 -51 -51 -60 0 -48; -56 -53 -47 -56 -50 0];
@@ -6,3 +89,6 @@ measurements = [0 -59 -61 -78 -70 -58; -49 0 -46 -52 -Inf -43; -52 -44 0 -51 -55
 
 TEST2
 
+points = [0 2; 3 5; 7 1; 7 0; 2 1; 2 5]';
+measurements = [0 -60 -60 -68 -63 -55; -61 0 -55 -55 -52 -35; -74 -50 0 -44 -53 -40; -67 -64 -55 0 -57 -52; -60 -48 -39 -54 0 -48; -53 -56 -47 -50 -50 0];
+measurements = [0 -61 -61 -72 -61 -60; -70 0 -58 -49 -43 -35; -55 -50 0 -46 -53 -41; -64 -55 -46 0 -55 -58; -60 -54 -48 -54 0 -42; -53 -59 -47 -50 -59 0];

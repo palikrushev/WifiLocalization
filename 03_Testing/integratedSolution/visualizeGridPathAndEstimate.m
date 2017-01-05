@@ -3,16 +3,22 @@ function [] = visualizeGridPathAndEstimate(gridPositions, pathPositions, pathPos
   figure;
   hold on;
   grid on;
-  axis([-0.1 1.1 -0.1 1.1 -0.1 1.1]);
   
-  axes = gca;
-  axes.XTick = -0.1:0.1:1.1;
-  axes.YTick = -0.1:0.1:1.1;
-  axes.ZTick = -0.1:0.1:1.1;
+  zeroToOne = false;
   
-  xlabel('X');
-  ylabel('Y');
-  zlabel('Z');
+  if (zeroToOne)
+    axis([-0.1 1.1 -0.1 1.1 -0.1 1.1]);
+
+    axes = gca;
+    axes.XTick = -0.1:0.1:1.1;
+    axes.YTick = -0.1:0.1:1.1;
+    axes.ZTick = -0.1:0.1:1.1;
+
+    xlabel('X');
+    ylabel('Y');
+    zlabel('Z');
+  end
+  
   
   scatter3(gridPositions(1,:),gridPositions(2,:),gridPositions(3,:),'Marker','.','MarkerEdgeColor',[0.5 0.5 1]);
   
