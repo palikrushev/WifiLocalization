@@ -3,14 +3,15 @@ function [devicePosition] = integratedMdsMap(anchorPositions, distanceFromDevice
   % Filter infinite values
   [filteredAnchorPositions, filteredDistanceFromDevice] = filterInfValues(anchorPositions, distanceFromDevice);
   
-  try
-    % Try MDS-MAP Algoritthm
-    devicePosition = mdsMapAlgorithm(filteredAnchorPositions, filteredDistanceFromDevice);
-  catch exception
-    % If it fails, just find the centroid
+  % If there are not enought points to do MDS, find weighted centroid
+  [dimension,~] = size(anchorPositions);
+  if (length(filteredDistanceFromDevice) <= dimension)
     devicePosition = weightedCentroid(filteredAnchorPositions, filteredDistanceFromDevice);
+    return;
   end
   
+  % Otherwise go with MDS-MAP Algoritthm
+  devicePosition = mdsMapAlgorithm(filteredAnchorPositions, filteredDistanceFromDevice);  
 end
 
 function [devicePosition] = mdsMapAlgorithm(anchorPositions, distanceFromDevice)
@@ -27,8 +28,8 @@ function [devicePosition] = mdsMapAlgorithm(anchorPositions, distanceFromDevice)
   % this is now DISABLED, instead weighted centroid is used
   
   % Perform classic mdscale
-  dimensions = length(anchorPositions(:,1));
-  rescaledPositions = mdsClassic(distanceMatrix, dimensions);
+  [dimension,~] = size(anchorPositions);
+  rescaledPositions = mdsClassic(distanceMatrix, dimension);
   
   % Extract separate rescaled positions for the anchors and for the device
   anchorRescaledPositions = rescaledPositions(:,2:end);
@@ -73,7 +74,7 @@ function [ centroid ] = weightedCentroid( anchorPositions, distanceFromDevice )
   [dimension, numberOfPoints] = size(anchorPositions);
   
   if (numberOfPoints == 0)
-    centroid = zeros(dimension,1) + 0.5;
+    centroid = zeros(dimension,1) + 5;
     return;
   end
 

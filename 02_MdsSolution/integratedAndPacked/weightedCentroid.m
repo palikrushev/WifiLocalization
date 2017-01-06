@@ -5,7 +5,7 @@ function [ centroid ] = weightedCentroid( anchorPositions, distanceFromDevice )
   [dimension, numberOfPoints] = size(anchorPositions);
   
   if (numberOfPoints == 0)
-    centroid = [0.5;0.5;0.5];
+    centroid = zeros(dimension,1) + 0.5;
     return;
   end
 
