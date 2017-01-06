@@ -6,7 +6,7 @@ function [] = visualize(gridPositions, estimates)
   figure;
   hold on;
   grid on;
-  
+    
   zeroToOne = true;
   
   if (zeroToOne)

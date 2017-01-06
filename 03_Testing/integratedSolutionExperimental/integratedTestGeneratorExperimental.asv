@@ -29,27 +29,26 @@ function [] = integratedTestGeneratorExperimental(gridPositions, measurements)
   estimatedDistances = estimatedDistances * 10;
   radioRange = radioRange * 10;
   
-  fileID = fopen('Test_5_Measurement_2.txt','w');
+  fileID = fopen('TestResult.txt','w');
   
   printValueToFileAndDisplay(fileID,'Radio Range',radioRange);
-  printValueToFileAndDisplay(fileID,'Infinite Values',sum(measurements(:) == -Inf));
   printArrayToFileAndDisplay(fileID,'Distances',distances);
   printArrayToFileAndDisplay(fileID,'Estimated Distances',estimatedDistances);
   printArrayToFileAndDisplay(fileID,'Errors',errors);
   
-  printLineToFileAndDisplay(fileID,'\nProperties:');
+  fprintf(fileID,'\nProperties:\n');
   
-  printPropertiesToFileAndDisplay(fileID, 'Distance', distances);
-  printPropertiesToFileAndDisplay(fileID, 'Estimated Distance', estimatedDistances);
-  printPropertiesToFileAndDisplay(fileID, 'Error', errors);
-    
+  printPropertiesToFileAndDisplay('Distance', distances);
+  printPropertiesToFileAndDisplay('Estimated Distance', estimatedDistances);
+  printPropertiesToFileAndDisplay('Error', errors);  
+
   fclose(fileID);
   
   visualize(gridPositions, estimates);
 end
 
-function [] = printPropertiesToFileAndDisplay(fileID, property, values)
-  printLineToFileAndDisplay(fileID,sprintf('\n%s:',property));
+function [] = printPropertiesToFileAndDisplay(property,values)
+  fprintf(fileID,'%s:\n',property);
   printValueToFileAndDisplay(fileID,'Mean',mean(values));
   printValueToFileAndDisplay(fileID,'Variance',var(values,1));
   printValueToFileAndDisplay(fileID,'Min',min(values));
@@ -92,10 +91,5 @@ end
 function [] = printValueToFileAndDisplay(fileID, stringName, value)
   line = [stringName ': ' sprintf('%.2f', value)];
   fprintf(fileID,'%s\n',line);
-  disp(line);
-end
-
-function [] = printLineToFileAndDisplay(fileID, line)
-  fprintf(fileID,line);
   disp(line);
 end
