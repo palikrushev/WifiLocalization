@@ -13,7 +13,7 @@ https://www.fcc.gov/oet/ea/fccid
 
 1. se vnesuva FCCID za uredot na https://www.fcc.gov/oet/ea/fccid (za galaxy s4 A3LGTI9505)
 2. se selektiraat frekvenciskite podrachja shto se okolu 2.4 GHz
-3. se izbira WLAN TEST REPORT
+3. se izbira WLAN TEST REPORT ili vo generalniot TEST REPORT se baraat vrednosti za 802.11
 
 primer se dobiva: 
 https://apps.fcc.gov/eas/GetApplicationAttachment.html?id=1917628
